@@ -13,7 +13,6 @@ import se.fk.rimfrost.framework.regel.integration.config.RegelConfigProvider;
 import se.fk.rimfrost.framework.regel.integration.kafka.RegelKafkaProducer;
 import se.fk.rimfrost.framework.regel.integration.kundbehovsflode.KundbehovsflodeAdapter;
 import se.fk.rimfrost.framework.regel.integration.kundbehovsflode.dto.ImmutableKundbehovsflodeRequest;
-import se.fk.rimfrost.framework.regel.integration.kundbehovsflode.KundbehovsflodeMapper;
 import se.fk.rimfrost.framework.oul.integration.kafka.dto.ImmutableOulMessageRequest;
 import se.fk.rimfrost.framework.oul.integration.kafka.OulKafkaProducer;
 import se.fk.rimfrost.framework.oul.logic.dto.OulResponse;
@@ -54,9 +53,6 @@ public class RegelService implements RegelRequestHandlerInterface, OulHandlerInt
    @Inject
    KundbehovsflodeAdapter kundbehovsflodeAdapter;
 
-   @Inject
-   KundbehovsflodeMapper kundbehovsflodeMapper;
-
    Map<UUID, CloudEventData> cloudevents = new HashMap<UUID, CloudEventData>();
 
    // TODO: Remove this field if not needed
@@ -68,7 +64,7 @@ public class RegelService implements RegelRequestHandlerInterface, OulHandlerInt
       var kundbehovsflodeRequest = ImmutableKundbehovsflodeRequest.builder()
             .kundbehovsflodeId(request.kundbehovsflodeId())
             .build();
-      var kundbehovflodesResponse = kundbehovsflodeAdapter.getKundbehovsflodeInfo(kundbehovsflodeRequest, kundbehovsflodeMapper);
+      var kundbehovflodesResponse = kundbehovsflodeAdapter.getKundbehovsflodeInfo(kundbehovsflodeRequest);
 
       var cloudeventData = ImmutableCloudEventData.builder()
             .id(request.id())
