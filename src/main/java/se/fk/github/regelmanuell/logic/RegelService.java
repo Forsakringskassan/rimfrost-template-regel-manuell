@@ -23,10 +23,11 @@ import se.fk.rimfrost.framework.regel.logic.entity.CloudEventData;
 import se.fk.rimfrost.framework.regel.logic.entity.ImmutableCloudEventData;
 import se.fk.rimfrost.framework.regel.Utfall;
 import se.fk.rimfrost.framework.oul.presentation.kafka.OulHandlerInterface;
+import se.fk.rimfrost.framework.oul.presentation.rest.OulUppgiftDoneHandler;
 import se.fk.rimfrost.framework.regel.presentation.kafka.RegelRequestHandlerInterface;
 
 @ApplicationScoped
-public class RegelService implements RegelRequestHandlerInterface, OulHandlerInterface
+public class RegelService implements RegelRequestHandlerInterface, OulHandlerInterface, OulUppgiftDoneHandler
 {
 
    @ConfigProperty(name = "application.base-url")
@@ -131,14 +132,15 @@ public class RegelService implements RegelRequestHandlerInterface, OulHandlerInt
        * status updates from OUL should be handled here,
        * such as for example updating the customer flow
        * information with the updated task status. Note
-       * that responses may arrive after setUppgiftDone
+       * that responses may arrive after handleUppgiftDone
        * has been called.
        */
 
       // TODO: Update customer flow information
    }
 
-   public void setUppgiftDone(UUID kundbehovsflodeId)
+   @Override
+   public void handleUppgiftDone(UUID kundbehovsflodeId)
    {
       /*
        * TODO: Adapt as needed
