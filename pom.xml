@@ -95,6 +95,11 @@
       <artifactId>rimfrost-framework-regel</artifactId>
       <version>0.1.6</version>
     </dependency>
+    <dependency>
+      <groupId>se.fk.rimfrost.framework.regel.manuell</groupId>
+      <artifactId>rimfrost-framework-regel-manuell</artifactId>
+      <version>0.0.3</version>
+    </dependency>
   </dependencies>
   <repositories>
     <repository>
