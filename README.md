@@ -34,7 +34,19 @@ konfigurerad för att kunna hämta vissa projekt beroenden.
 Två github workflows är inkluderade i projektet, maven-ci och maven-release.
 
 maven-release skapar som del av sitt flöde en docker image.
-Den publiseras till försäkringskassans [repository](https://github.com/Forsakringskassan/repository).
+Den publiceras till försäkringskassans [repository](https://github.com/Forsakringskassan/repository).
+
+## Ersätt Template i mallarna
+
+Genomgående: Byt ut _Template_ mot namnet på regeln.
+
+t.ex. om regelns namn är _Bekräfta beslut_:
+```
+package se.fk.github.template -> se.fk.github.bekraftabeslut
+GetTemplateDataRequest -> GetBekraftaBeslutDataRequest
+```
+
+
 
 ## Exempel implementation
 Se [rimfrost-regel-rtf-manuell](https://github.com/Forsakringskassan/rimfrost-regel-rtf-manuell) för en färdig implementation av en manuell regel.
