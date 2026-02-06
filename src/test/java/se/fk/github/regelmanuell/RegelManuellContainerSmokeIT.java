@@ -420,7 +420,7 @@ public class RegelManuellContainerSmokeIT
          throws IOException, InterruptedException
    {
       // TODO: Change "/regel/manuell/" to mtch path in RegelController
-      var url = "http://" + regelManuell.getHost() + ":" + regelManuell.getMappedPort(8080) + "/regel/manuell/"
+      var url = "http://" + regelManuell.getHost() + ":" + regelManuell.getMappedPort(8080) + "/regel/template/"
             + kundbehovsflodeId + "/done";
       System.out.printf("Sending POST manuell to: %s%n", url);
       HttpRequest request = HttpRequest.newBuilder()
@@ -496,6 +496,6 @@ public class RegelManuellContainerSmokeIT
       RegelResponseMessagePayload regelManuellResponseMessagePayload = mapper.readValue(kafkaRegelManuellResponseMessage,
             RegelResponseMessagePayload.class);
       assertEquals(kundbehovsflodeId, regelManuellResponseMessagePayload.getData().getKundbehovsflodeId());
-      assertEquals(Utfall.JA, regelManuellResponseMessagePayload.getData().getUtfall());
+      assertEquals(Utfall.NEJ, regelManuellResponseMessagePayload.getData().getUtfall());
    }
 }
