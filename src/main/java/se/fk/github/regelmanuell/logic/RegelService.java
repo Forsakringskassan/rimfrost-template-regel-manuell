@@ -29,10 +29,6 @@ import se.fk.rimfrost.framework.regel.presentation.kafka.RegelRequestHandlerInte
 @ApplicationScoped
 public class RegelService implements RegelRequestHandlerInterface, OulHandlerInterface, OulUppgiftDoneHandler
 {
-
-   @ConfigProperty(name = "application.base-url")
-   String applicationBaseUrl;
-
    @ConfigProperty(name = "kafka.source")
    String kafkaSource;
 
