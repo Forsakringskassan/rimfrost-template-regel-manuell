@@ -6,7 +6,9 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import se.fk.github.regel.template.logic.dto.GetTemplateDataRequest;
 import se.fk.github.regel.template.logic.dto.GetTemplateDataResponse;
-import se.fk.rimfrost.framework.regel.integration.kundbehovsflode.dto.ImmutableKundbehovsflodeRequest;
+import se.fk.rimfrost.framework.kundbehovsflode.adapter.dto.ImmutableKundbehovsflodeRequest;
+import se.fk.rimfrost.framework.regel.Utfall;
+import se.fk.rimfrost.framework.regel.logic.dto.Beslutsutfall;
 import se.fk.rimfrost.framework.regel.logic.entity.ImmutableRegelData;
 import se.fk.rimfrost.framework.regel.logic.entity.RegelData;
 import se.fk.rimfrost.framework.regel.manuell.logic.RegelManuellService;
@@ -61,5 +63,14 @@ public class TemplateService extends RegelManuellService
        */
 
       regelDatas.put(regelData.kundbehovsflodeId(), regelDataBuilder.build());
+   }
+
+   @Override
+   protected Utfall decideUtfall(RegelData regelData)
+   {
+      //
+      // Ersätt med regel-specifik logik
+      //
+      return regelData.ersattningar().stream().allMatch(e -> e.beslutsutfall() == Beslutsutfall.JA) ? Utfall.JA : Utfall.NEJ;
    }
 }

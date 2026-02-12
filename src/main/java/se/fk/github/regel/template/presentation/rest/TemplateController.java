@@ -7,14 +7,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import se.fk.github.regel.template.logic.TemplateMapper;
 import se.fk.github.regel.template.logic.TemplateService;
-import se.fk.rimfrost.framework.oul.presentation.rest.OulController;
+import se.fk.rimfrost.framework.regel.manuell.presentation.rest.RegelManuellController;
 
 @Produces("application/json")
 @Consumes("application/json")
 @ApplicationScoped
 // TODO: Change path to something relevant for the rule
 @Path("/regel/template")
-public class TemplateController extends OulController
+public class TemplateController extends RegelManuellController
 
 /*
 *
@@ -22,7 +22,7 @@ public class TemplateController extends OulController
 *
 * T.ex:
 *
-* public class BekraftaBeslutController extends OulController implements RegelBekraftaBeslutControllerApi
+* public class BekraftaBeslutController  extends RegelManuellController implements RegelBekraftaBeslutControllerApi
 *
 */
 
