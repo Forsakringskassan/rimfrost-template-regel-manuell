@@ -1,7 +1,7 @@
 uppgift:
   version: 1.0
   # TODO: Change path to match path in RegelController
-  path: /regel/manuell
+  path: /regel/template
   aktivitet: "Bedömma rätten till"
 
 specifikation:

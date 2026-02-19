@@ -29,7 +29,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
-
 import static com.github.tomakehurst.wiremock.client.WireMock.anyRequestedFor;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlMatching;
 import static io.restassured.RestAssured.given;
@@ -41,7 +40,7 @@ import static org.testcontainers.shaded.org.awaitility.Awaitility.await;
 {
       @QuarkusTestResource(WireMockTestResource.class)
 })
-public class RegelManuellTest
+public class RegelTemplateTest
 {
    private static final String oulRequestsChannel = "operativt-uppgiftslager-requests";
    private static final String oulResponsesChannel = "operativt-uppgiftslager-responses";
@@ -68,7 +67,7 @@ public class RegelManuellTest
    static void setupRegelManuellTest()
    {
       Properties props = new Properties();
-      try (InputStream in = RegelManuellTest.class.getResourceAsStream("/test.properties"))
+      try (InputStream in = RegelTemplateTest.class.getResourceAsStream("/test.properties"))
       {
          if (in == null)
          {
@@ -145,8 +144,8 @@ public class RegelManuellTest
 
    public void sendPostRegelManuell(String kundbehovsflodeId)
    {
-      // TODO: Change "/regel/manuell/" to match path in RegelController
-      given().when().post("/regel/manuell/{kundbehovsflodeId}/done", kundbehovsflodeId).then().statusCode(204);
+      // TODO: Byt ut "/regel/template/" för att överensstämma med path i RegelController
+      given().when().post("/regel/template/{kundbehovsflodeId}/done", kundbehovsflodeId).then().statusCode(204);
    }
 
    @ParameterizedTest
@@ -154,9 +153,9 @@ public class RegelManuellTest
    {
          "5367f6b8-cc4a-11f0-8de9-199901011234"
    })
-   void TestRegelManuell(String kundbehovsflodeId) throws Exception
+   void TestRegelTemplate(String kundbehovsflodeId) throws Exception
    {
-      System.out.printf("Starting TestRegelManuell. %S%n", kundbehovsflodeId);
+      System.out.printf("Starting TestRegelTemplate. %S%n", kundbehovsflodeId);
 
       // Send regel request to start workflow
       sendRegelRequest(kundbehovsflodeId);
@@ -184,8 +183,10 @@ public class RegelManuellTest
       assertEquals("TestUppgiftNamn", oulRequestMessage.getRegel());
       assertEquals("C", oulRequestMessage.getVerksamhetslogik());
       assertEquals("ANSVARIG_HANDLAGGARE", oulRequestMessage.getRoll());
-      // TODO: Change "/regel/manuell/" to mtch path in RegelController
-      assertTrue(oulRequestMessage.getUrl().contains("/regel/manuell"));
+      //
+      // TODO: Change "/regel/template/" to match path in RegelController
+      //
+      assertTrue(oulRequestMessage.getUrl().contains("/regel/template"));
 
       // Clear previous requests
       wiremockServer.resetRequests();
@@ -237,6 +238,6 @@ public class RegelManuellTest
 
       var rtfManuellResponseMessagePayload = (RegelResponseMessagePayload) message;
       assertEquals(kundbehovsflodeId, rtfManuellResponseMessagePayload.getData().getKundbehovsflodeId());
-      assertEquals(Utfall.JA, rtfManuellResponseMessagePayload.getData().getUtfall());
+      assertEquals(Utfall.NEJ, rtfManuellResponseMessagePayload.getData().getUtfall());
    }
 }
