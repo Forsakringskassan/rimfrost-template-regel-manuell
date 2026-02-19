@@ -35,14 +35,14 @@ public class TemplateService extends RegelManuellService
        *
        */
 
-      var regelData = regelDatas.get(request.kundbehovsflodeId());
+      var regelData = commonRegelData.getRegelData(request.kundbehovsflodeId());
 
       updateRegelDataUnderlag(regelData
       // folkbokfordResponse, // ersätt med regel-specifikt data
       // arbetsgivareResponse
       );
 
-      updateKundbehovsflodeInfo(regelData);
+      updateKundbehovsFlode(regelData);
 
       return templateMapper.toTemplateResponse(kundbehovflodesResponse,
             // folkbokfordResponse, // ersätt med regel-specifikt data
@@ -62,7 +62,12 @@ public class TemplateService extends RegelManuellService
        *
        */
 
-      regelDatas.put(regelData.kundbehovsflodeId(), regelDataBuilder.build());
+      synchronized (commonRegelData.getLock())
+      {
+         var regelDatas = commonRegelData.getRegelDatas();
+         regelDatas.put(regelData.kundbehovsflodeId(), regelDataBuilder.build());
+         storageManager.store(regelDatas);
+      }
    }
 
    @Override

@@ -1,4 +1,4 @@
-package se.fk.github.regelmanuell;
+package se.fk.github.regel.template;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -38,7 +38,8 @@ import static org.testcontainers.shaded.org.awaitility.Awaitility.await;
 @QuarkusTest
 @QuarkusTestResource.List(
 {
-      @QuarkusTestResource(WireMockTestResource.class)
+      @QuarkusTestResource(WireMockTestResource.class),
+      @QuarkusTestResource(StorageDataTestResource.class)
 })
 public class RegelTemplateTest
 {

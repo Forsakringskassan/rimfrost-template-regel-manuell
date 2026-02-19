@@ -1,4 +1,4 @@
-package se.fk.github.regelmanuell;
+package se.fk.github.regel.template;
 
 import java.io.InputStream;
 import java.util.Properties;
