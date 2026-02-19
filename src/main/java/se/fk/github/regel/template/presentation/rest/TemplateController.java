@@ -46,7 +46,7 @@ public class TemplateController extends RegelManuellController
    */
 
    /*
-     @GET
+    @GET
     @Path("/{kundbehovsflodeId}")
     @Override
     public GetDataResponse getData(UUID kundbehovsflodeId)
@@ -63,6 +63,5 @@ public class TemplateController extends RegelManuellController
             throw new InternalServerErrorException("Failed to process request");
         }
     }
-   
     */
 }
