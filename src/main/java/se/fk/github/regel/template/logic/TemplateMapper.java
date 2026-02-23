@@ -4,7 +4,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import se.fk.github.regel.template.logic.dto.GetTemplateDataResponse;
 import se.fk.github.regel.template.logic.dto.ImmutableGetTemplateDataResponse;
 import se.fk.rimfrost.framework.kundbehovsflode.adapter.dto.KundbehovsflodeResponse;
-import se.fk.rimfrost.framework.regel.logic.entity.RegelData;
+import se.fk.rimfrost.framework.regel.manuell.logic.entity.RegelData;
 
 @ApplicationScoped
 public class TemplateMapper

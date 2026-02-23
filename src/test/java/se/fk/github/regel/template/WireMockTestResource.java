@@ -1,4 +1,4 @@
-package se.fk.github.regelmanuell;
+package se.fk.github.regel.template;
 
 import com.github.tomakehurst.wiremock.WireMockServer;
 import io.quarkus.test.common.QuarkusTestResourceLifecycleManager;
