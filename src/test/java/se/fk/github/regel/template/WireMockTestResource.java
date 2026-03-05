@@ -27,7 +27,7 @@ public class WireMockTestResource implements QuarkusTestResourceLifecycleManager
       server.start();
 
       return Map.of(
-            "kundbehovsflode.api.base-url", server.baseUrl());
+            "handlaggning.api.base-url", server.baseUrl());
    }
 
    @Override

@@ -47,14 +47,14 @@ public class TemplateController extends RegelManuellController
 
    /*
     @GET
-    @Path("/{kundbehovsflodeId}")
+    @Path("/{handlaggningId}")
     @Override
-    public GetDataResponse getData(UUID kundbehovsflodeId)
+    public GetDataResponse getData(UUID handlaggningId)
     {
         try
         {
             var request = ImmutableGetTemplateDataRequest.builder()
-                    .kundbehovsflodeId(kundbehovsflodeId).build();
+                    .handlaggningId(handlaggningId).build();
             var response = templateService.getData(request);
             return templateMapper.toGetDataResponse(response);
         }

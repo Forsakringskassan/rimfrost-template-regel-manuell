@@ -3,14 +3,14 @@ package se.fk.github.regel.template.logic;
 import jakarta.enterprise.context.ApplicationScoped;
 import se.fk.github.regel.template.logic.dto.GetTemplateDataResponse;
 import se.fk.github.regel.template.logic.dto.ImmutableGetTemplateDataResponse;
-import se.fk.rimfrost.framework.kundbehovsflode.adapter.dto.KundbehovsflodeResponse;
+import se.fk.rimfrost.framework.handlaggning.adapter.dto.HandlaggningResponse;
 import se.fk.rimfrost.framework.regel.manuell.logic.entity.RegelData;
 
 @ApplicationScoped
 public class TemplateMapper
 {
 
-   public GetTemplateDataResponse toTemplateResponse(KundbehovsflodeResponse kundbehovflodesResponse,
+   public GetTemplateDataResponse toTemplateResponse(HandlaggningResponse handlaggningResponse,
          //
          // FolkbokfordResponse folkbokfordResponse, // Ersätt med regel-specifikt data
          //
@@ -23,7 +23,7 @@ public class TemplateMapper
        */
 
       var builder = ImmutableGetTemplateDataResponse.builder()
-            .kundbehovsflodeId(kundbehovflodesResponse.kundbehovsflodeId())
+            .handlaggningId(handlaggningResponse.handlaggningId())
       //
       // .ersattning(ersattningsList) // Ersätt med regel-specifikt data
       //
