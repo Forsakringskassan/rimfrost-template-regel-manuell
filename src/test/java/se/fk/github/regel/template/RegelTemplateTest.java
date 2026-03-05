@@ -51,7 +51,7 @@ public class RegelTemplateTest
    private static final String regelResponsesChannel = "regel-responses";
    private static final ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule())
          .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-   private static final String kundbehovsflodeEndpoint = "/kundbehovsflode/";
+   private static final String handlaggningEndpoint = "/handlaggning/";
    private static WireMockServer wiremockServer;
 
    @Inject
@@ -115,11 +115,11 @@ public class RegelTemplateTest
       return requests;
    }
 
-   private void sendRegelRequest(String kundbehovsflodeId) throws Exception
+   private void sendRegelRequest(String handlaggningId) throws Exception
    {
       RegelRequestMessagePayload payload = new RegelRequestMessagePayload();
       RegelRequestMessagePayloadData data = new RegelRequestMessagePayloadData();
-      data.setKundbehovsflodeId(kundbehovsflodeId);
+      data.setHandlaggningId(handlaggningId);
       payload.setSpecversion(se.fk.rimfrost.framework.regel.SpecVersion.NUMBER_1_DOT_0);
       payload.setId("99994567-89ab-4cde-9012-3456789abcde");
       payload.setSource("TestSource-001");
@@ -143,10 +143,10 @@ public class RegelTemplateTest
       return inMemoryConnector.sink(channel).received();
    }
 
-   public void sendPostRegelManuell(String kundbehovsflodeId)
+   public void sendPostRegelManuell(String handlaggningId)
    {
       // TODO: Byt ut "/regel/template/" för att överensstämma med path i RegelController
-      given().when().post("/regel/template/{kundbehovsflodeId}/done", kundbehovsflodeId).then().statusCode(204);
+      given().when().post("/regel/template/{handlaggningId}/done", handlaggningId).then().statusCode(204);
    }
 
    @ParameterizedTest
@@ -154,19 +154,19 @@ public class RegelTemplateTest
    {
          "5367f6b8-cc4a-11f0-8de9-199901011234"
    })
-   void TestRegelTemplate(String kundbehovsflodeId) throws Exception
+   void TestRegelTemplate(String handlaggningId) throws Exception
    {
-      System.out.printf("Starting TestRegelTemplate. %S%n", kundbehovsflodeId);
+      System.out.printf("Starting TestRegelTemplate. %S%n", handlaggningId);
 
       // Send regel request to start workflow
-      sendRegelRequest(kundbehovsflodeId);
+      sendRegelRequest(handlaggningId);
 
       //
-      // Verify GET kundbehovsflöde requested
+      // Verify GET handläggning requested
       //
-      List<LoggedRequest> kundbehovsflodeRequests = waitForWireMockRequest(wiremockServer,
-            kundbehovsflodeEndpoint + kundbehovsflodeId, 1);
-      var getRequests = kundbehovsflodeRequests.stream().filter(p -> p.getMethod().equals(RequestMethod.GET)).toList();
+      List<LoggedRequest> handlaggningRequests = waitForWireMockRequest(wiremockServer,
+            handlaggningEndpoint + handlaggningId, 1);
+      var getRequests = handlaggningRequests.stream().filter(p -> p.getMethod().equals(RequestMethod.GET)).toList();
       assertFalse(getRequests.isEmpty());
 
       //
@@ -179,7 +179,7 @@ public class RegelTemplateTest
       assertInstanceOf(OperativtUppgiftslagerRequestMessage.class, message);
 
       var oulRequestMessage = (OperativtUppgiftslagerRequestMessage) message;
-      assertEquals(kundbehovsflodeId, oulRequestMessage.getKundbehovsflodeId());
+      assertEquals(handlaggningId, oulRequestMessage.getHandlaggningId());
       assertEquals("TestUppgiftBeskrivning", oulRequestMessage.getBeskrivning());
       assertEquals("TestUppgiftNamn", oulRequestMessage.getRegel());
       assertEquals("C", oulRequestMessage.getVerksamhetslogik());
@@ -196,7 +196,7 @@ public class RegelTemplateTest
       // Send mocked OUL response
       //
       OperativtUppgiftslagerResponseMessage oulResponseMessage = new OperativtUppgiftslagerResponseMessage();
-      oulResponseMessage.setKundbehovsflodeId(kundbehovsflodeId);
+      oulResponseMessage.setHandlaggningId(handlaggningId);
       oulResponseMessage.setUppgiftId("11e53b18-e9ac-4707-825b-a1cb80689c29");
       inMemoryConnector.source(oulResponsesChannel).send(oulResponseMessage);
 
@@ -206,14 +206,14 @@ public class RegelTemplateTest
       OperativtUppgiftslagerStatusMessage oulStatusMessage = new OperativtUppgiftslagerStatusMessage();
       oulStatusMessage.setStatus(Status.NY);
       oulStatusMessage.setUppgiftId(oulResponseMessage.getUppgiftId());
-      oulStatusMessage.setKundbehovsflodeId(kundbehovsflodeId);
+      oulStatusMessage.setHandlaggningId(handlaggningId);
       oulStatusMessage.setUtforarId("383cc515-4c55-479b-a96b-244734ef1336");
       inMemoryConnector.source(oulStatusNotificationChannel).send(oulStatusMessage);
 
       //
       // mock POST operation from portal FE
       //
-      sendPostRegelManuell(kundbehovsflodeId);
+      sendPostRegelManuell(handlaggningId);
 
       //
       // verify kafka status message sent to oul
@@ -238,7 +238,7 @@ public class RegelTemplateTest
       assertInstanceOf(RegelResponseMessagePayload.class, message);
 
       var rtfManuellResponseMessagePayload = (RegelResponseMessagePayload) message;
-      assertEquals(kundbehovsflodeId, rtfManuellResponseMessagePayload.getData().getKundbehovsflodeId());
+      assertEquals(handlaggningId, rtfManuellResponseMessagePayload.getData().getHandlaggningId());
       assertEquals(Utfall.NEJ, rtfManuellResponseMessagePayload.getData().getUtfall());
    }
 }

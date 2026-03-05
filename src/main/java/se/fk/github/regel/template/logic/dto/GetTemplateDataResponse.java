@@ -7,7 +7,7 @@ import java.util.UUID;
 public interface GetTemplateDataResponse
 {
 
-   UUID kundbehovsflodeId();
+   UUID handlaggningId();
 
    //
    // Ersätt nedanstående med den datamängd som regeln behöver i responsen på GET-operationen

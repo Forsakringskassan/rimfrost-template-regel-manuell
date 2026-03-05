@@ -10,8 +10,8 @@ import se.fk.github.regel.template.logic.dto.GetTemplateDataRequest;
 import se.fk.github.regel.template.logic.dto.GetTemplateDataResponse;
 import se.fk.github.regel.template.storage.TemplateDataStorageProvider;
 import se.fk.github.regel.template.storage.entity.TemplateDataStorage;
-import se.fk.rimfrost.framework.kundbehovsflode.adapter.KundbehovsflodeAdapter;
-import se.fk.rimfrost.framework.kundbehovsflode.adapter.dto.ImmutableKundbehovsflodeRequest;
+import se.fk.rimfrost.framework.handlaggning.adapter.HandlaggningAdapter;
+import se.fk.rimfrost.framework.handlaggning.adapter.dto.ImmutableHandlaggningRequest;
 import se.fk.rimfrost.framework.regel.Utfall;
 import se.fk.rimfrost.framework.regel.integration.config.RegelConfigProvider;
 import se.fk.rimfrost.framework.regel.logic.RegelMapper;
@@ -38,7 +38,7 @@ public class TemplateService implements RegelManuellServiceInterface
    RegelConfigProvider regelConfigProvider;
 
    @Inject
-   KundbehovsflodeAdapter kundbehovsflodeAdapter;
+   HandlaggningAdapter handlaggningAdapter;
 
    @Inject
    TemplateDataStorageProvider templateDataStorageProvider;
@@ -62,11 +62,11 @@ public class TemplateService implements RegelManuellServiceInterface
 
    public GetTemplateDataResponse getData(GetTemplateDataRequest request) throws JsonProcessingException
    {
-      // TODO kundbehovsflöde GET/PUT bör kunna flyttas till ramverket
-      var kundbehovsflodeRequest = ImmutableKundbehovsflodeRequest.builder()
-            .kundbehovsflodeId(request.kundbehovsflodeId())
+      // TODO handläggning GET/PUT bör kunna flyttas till ramverket
+      var handlaggningRequest = ImmutableHandlaggningRequest.builder()
+            .handlaggningId(request.handlaggningId())
             .build();
-      var kundbehovflodesResponse = kundbehovsflodeAdapter.getKundbehovsflodeInfo(kundbehovsflodeRequest);
+      var handlaggningResponse = handlaggningAdapter.getHandlaggningInfo(handlaggningRequest);
 
       /*
        *
@@ -74,23 +74,23 @@ public class TemplateService implements RegelManuellServiceInterface
        *
        */
 
-      var regelData = templateDataStorage.getCommonRegelData().getRegelData(request.kundbehovsflodeId());
+      var regelData = templateDataStorage.getCommonRegelData().getRegelData(request.handlaggningId());
 
-      updateRegelDataUnderlag(request.kundbehovsflodeId(), regelData
+      updateRegelDataUnderlag(request.handlaggningId(), regelData
       // folkbokfordResponse, // ersätt med regel-specifikt data
       // arbetsgivareResponse
       );
 
-      var putKundbehovsflodeRequest = regelMapper.toPutKundbehovsflodeRequest(request.kundbehovsflodeId(),
+      var putHandlaggningRequest = regelMapper.toPutHandlaggningRequest(request.handlaggningId(),
             regelData.uppgiftData(), regelData.underlag(), regelConfig);
-      kundbehovsflodeAdapter.putKundbehovsflode(putKundbehovsflodeRequest);
+      handlaggningAdapter.putHandlaggning(putHandlaggningRequest);
 
-      return templateMapper.toTemplateResponse(kundbehovflodesResponse,
+      return templateMapper.toTemplateResponse(handlaggningResponse,
             // folkbokfordResponse, // ersätt med regel-specifikt data
             regelData);
    }
 
-   private void updateRegelDataUnderlag(UUID kundbehovsflodeId, RegelData regelData
+   private void updateRegelDataUnderlag(UUID handlaggningId, RegelData regelData
    // FolkbokfordResponse folkbokfordResponse, // ersätt med regel-specifikt data
    ) throws JsonProcessingException
    {
@@ -108,7 +108,7 @@ public class TemplateService implements RegelManuellServiceInterface
       synchronized (commonRegelData.getLock())
       {
          var regelDatas = commonRegelData.getRegelDatas();
-         regelDatas.put(kundbehovsflodeId, regelDataBuilder.build());
+         regelDatas.put(handlaggningId, regelDataBuilder.build());
          storageManager.store(regelDatas);
       }
    }
@@ -123,7 +123,7 @@ public class TemplateService implements RegelManuellServiceInterface
    }
 
    @Override
-   public void handleRegelDone(UUID kundbehovsflodeId)
+   public void handleRegelDone(UUID handlaggningId)
    {
       //
       // Ersätt med regel-specific logik

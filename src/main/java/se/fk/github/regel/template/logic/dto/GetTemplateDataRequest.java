@@ -7,6 +7,6 @@ import java.util.UUID;
 public interface GetTemplateDataRequest
 {
 
-   UUID kundbehovsflodeId();
+   UUID handlaggningId();
 
 }

@@ -7,7 +7,7 @@ import java.util.UUID;
 public interface TemplateData
 {
 
-   UUID kundbehovsflodeId();
+   UUID handlaggningId();
 
    UUID cloudeventId();
 
