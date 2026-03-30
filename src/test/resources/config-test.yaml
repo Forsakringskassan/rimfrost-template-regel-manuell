@@ -1,8 +1,8 @@
 uppgift:
   version: 1.0
   # TODO: Change path to match path in RegelController
-  path: /regel/template
-  aktivitet: "Bedömma rätten till"
+  path: /regel/_Template_
+  aktivitet: "Bedöma rätten till"
 
 specifikation:
   id: a42ffaed-2f20-47e8-8499-f2f79ae2f45f
@@ -17,14 +17,14 @@ specifikation:
 regel:
   id: a11f3429-3a6b-4389-ba1c-c2747b0fb45b
   version: 1.0
-  namn: "Har kunden varit frånvarande från arbete"
-  beskrivning: "Ring och kolla med arbetsgivaren om personen varit frånvarande från sitt arbete"
+  namn: "Regel namn"
+  beskrivning: "Regel beskrivning"
 
 lagrum:
   id: f0c927a9-b995-4a12-b4fd-4bcbf4281b44
   version: 1.0
   giltigFom: 2010-02-11
-  forfattning: "Husdjursbalken"
+  forfattning: "Lagrum författning"
   kapitel: 3
   paragraf: 5
   stycke: 1
