@@ -9,7 +9,6 @@ import se.fk.rimfrost.framework.handlaggning.adapter.HandlaggningAdapter;
 import se.fk.rimfrost.framework.handlaggning.model.Handlaggning;
 import se.fk.rimfrost.framework.regel.Utfall;
 import se.fk.rimfrost.framework.regel.integration.config.RegelConfigProvider;
-import se.fk.rimfrost.framework.regel.logic.RegelMapper;
 import se.fk.rimfrost.framework.regel.logic.config.RegelConfig;
 import se.fk.rimfrost.framework.regel.manuell.logic.RegelManuellServiceBase;
 import se.fk.rimfrost.framework.regel.manuell.logic.RegelManuellServiceInterface;
@@ -17,13 +16,10 @@ import java.util.UUID;
 
 @ApplicationScoped
 @Startup
-public class _Template_Service extends RegelManuellServiceBase implements RegelManuellServiceInterface
-{ // TODO rename service
+public class _Template_Service extends RegelManuellServiceBase implements RegelManuellServiceInterface // TODO rename service
+{
    @Inject
-   _Template_Mapper _Template_mapper; // TODO rename
-
-   @Inject
-   RegelMapper regelMapper;
+   _Template_Mapper mapper; // TODO rename
 
    @Inject
    RegelConfigProvider regelConfigProvider;
@@ -42,27 +38,30 @@ public class _Template_Service extends RegelManuellServiceBase implements RegelM
       regelConfig = regelConfigProvider.getConfig();
    }
 
+   public Get_Template_DataResponse readData(Handlaggning handlaggning) // TODO klass från regelns OpenAPI-spec
+    {
+        // TODO to be implemented: regelns logik för att bygga upp getData-response
+        mapper.toGetDataResponse(handlaggning,
+                // TODO regel-specifik data
+        )
+    }
+
    @Override
     public Utfall updateData(Handlaggning handlaggning,
                              Patch_Template_DataRequest // TODO klass från regelns OpenAPI-spec
                              ) {
 
-        // TODO to be implemented
+        // TODO to be implemented: uppdatera data från Patch request
     }
 
    @Override
    public void done(UUID handlaggningId)
    {
 
-      // TODO to be implemented
+      // TODO to be implemented: ev. uppstädning av data samt uppdatering av utfall
 
       sendRegelResponse(handlaggningId, utfall);
 
-   }
-
-   public Get_Template_DataResponse readData(Handlaggning handlaggning) // TODO klass från regelns OpenAPI-spec
-   {
-      // TODO to be implemented
    }
 
 }
