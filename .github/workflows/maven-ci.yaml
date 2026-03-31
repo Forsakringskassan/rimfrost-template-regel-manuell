@@ -4,6 +4,8 @@ on: [workflow_dispatch, workflow_call, push, pull_request]
 
 jobs:
   call-workflow:
+    # Set to true when project is ready for CI
+    if: false
     uses: Forsakringskassan/.github/.github/workflows/bundle-maven-ci.yaml@main
     secrets:
       PACKAGES_RW_ACTOR: ${{ secrets.PACKAGES_RW_ACTOR }}
