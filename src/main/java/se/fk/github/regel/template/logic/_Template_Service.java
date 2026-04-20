@@ -7,7 +7,7 @@ import jakarta.inject.Inject;
 import se.fk.github.regel.template.storage._Template_CommonDataStorageService;
 import se.fk.rimfrost.framework.handlaggning.adapter.HandlaggningAdapter;
 import se.fk.rimfrost.framework.handlaggning.model.Handlaggning;
-import se.fk.rimfrost.framework.regel.Utfall;
+import se.fk.rimfrost.framework.handlaggning.model.HandlaggningUpdate;
 import se.fk.rimfrost.framework.regel.integration.config.RegelConfigProvider;
 import se.fk.rimfrost.framework.regel.logic.config.RegelConfig;
 import se.fk.rimfrost.framework.regel.manuell.logic.RegelManuellServiceBase;
@@ -16,7 +16,8 @@ import java.util.UUID;
 
 @ApplicationScoped
 @Startup
-public class _Template_Service extends RegelManuellServiceBase implements RegelManuellServiceInterface // TODO rename service
+public class _Template_Service extends RegelManuellServiceBase
+      implements RegelManuellServiceInterface<Get_Template_DataResponse, Patch_Template_DataRequest> // TODO rename service
 {
    @Inject
    _Template_Mapper mapper; // TODO rename
@@ -47,8 +48,8 @@ public class _Template_Service extends RegelManuellServiceBase implements RegelM
     }
 
    @Override
-    public Utfall updateData(Handlaggning handlaggning,
-                             Patch_Template_DataRequest // TODO klass från regelns OpenAPI-spec
+    public HandlaggningUpdate updateData(Handlaggning handlaggning,
+                                         Patch_Template_DataRequest // TODO klass från regelns OpenAPI-spec
                              ) {
 
         // TODO to be implemented: uppdatera data från Patch request
