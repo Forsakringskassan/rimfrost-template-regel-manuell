@@ -39,30 +39,29 @@ public class _Template_Service extends RegelManuellServiceBase
       regelConfig = regelConfigProvider.getConfig();
    }
 
-   public Get_Template_DataResponse readData(Handlaggning handlaggning) // TODO klass från regelns OpenAPI-spec
-    {
+   public Get_Template_DataResponse readData(Handlaggning handlaggning) // TODO byt ut mot klass genererad från regelns OpenAPI-spec
+   {
         // TODO to be implemented: regelns logik för att bygga upp getData-response
-        mapper.toGetDataResponse(handlaggning,
+        return mapper.toGetDataResponse(handlaggning,
                 // TODO regel-specifik data
-        )
-    }
+        );
+   }
 
    @Override
-    public HandlaggningUpdate updateData(Handlaggning handlaggning,
-                                         Patch_Template_DataRequest // TODO klass från regelns OpenAPI-spec
-                             ) {
+   public HandlaggningUpdate updateData(Handlaggning handlaggning,
+         Patch_Template_DataRequest request // TODO byt ut mot klass genererad från regelns OpenAPI-spec
+   )
+   {
 
-        // TODO to be implemented: uppdatera data från Patch request
-    }
+      // TODO to be implemented: uppdatera data från Patch request
+   }
 
    @Override
    public void done(UUID handlaggningId)
    {
 
       // TODO to be implemented: ev. uppstädning av data samt uppdatering av utfall
-
       sendRegelResponse(handlaggningId, utfall);
-
    }
 
 }

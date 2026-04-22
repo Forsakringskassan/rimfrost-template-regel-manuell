@@ -1,12 +1,13 @@
 uppgift:
-  version: 1.0
+  id: c93e2701-4ca6-48b6-8976-dc14833d877e
+  version: 1
   # TODO: Change path to match path in RegelController
   path: /regel/template
   aktivitet: "Bedömma rätten till"
 
 specifikation:
   id: a42ffaed-2f20-47e8-8499-f2f79ae2f45f
-  version: 1.0
+  version: 1
   namn: "Har kunden rätt till VAH?"
   uppgiftbeskrivning: "Kontrollerar om kunden har varit frånvarande från sitt arbete"
   verksamhetslogik: C
@@ -16,16 +17,19 @@ specifikation:
 
 regel:
   id: a11f3429-3a6b-4389-ba1c-c2747b0fb45b
-  version: 1.0
+  version: 1
   namn: "Har kunden varit frånvarande från arbete"
   beskrivning: "Ring och kolla med arbetsgivaren om personen varit frånvarande från sitt arbete"
 
 lagrum:
   id: f0c927a9-b995-4a12-b4fd-4bcbf4281b44
-  version: 1.0
+  version: 1
   giltigFom: 2010-02-11
   forfattning: "Husdjursbalken"
   kapitel: 3
   paragraf: 5
   stycke: 1
   punkt: 4
+
+utokadUppgiftsbeskrivning:
+  beskrivning: "Ring och kolla med arbetsgivaren om personen varit frånvarande från sitt arbete"
