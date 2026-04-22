@@ -5,7 +5,7 @@ import se.fk.rimfrost.framework.regel.manuell.logic.RegelManuellMiddlewareServic
 
 @ApplicationScoped
 public class _Template_MiddlewareServiceImpl
-      extends RegelManuellMiddlewareService<Get_Template_DataResponse, Patch_Template_DataRequest>
+      extends RegelManuellMiddlewareService<Get_Template_DataResponse, Patch_Template_DataRequest> // TODO byt ut mot klasser genererade från regelns OpenAPI-spec
 {
 
 }
