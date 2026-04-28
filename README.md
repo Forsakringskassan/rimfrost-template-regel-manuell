@@ -19,31 +19,78 @@ miljövariablerna **GITHUB_ACTOR** och **GITHUB_TOKEN** är
 konfigurerade.
 
 Notera att det GITHUB token som används förväntas ha repo access 
-konfigurerad för att kunna hämta vissa projekt beroenden. 
+konfigurerad för att kunna hämta vissa projekt beroenden.
+
+## Projektstruktur
+
+Källkoden är uppdelad i en lagerarkitektur:
+
+```
+src/main/java/se/fk/github/regel/template/
+├── logic/          Affärslogik – _Template_Service, _Template_Mapper, _Template_MiddlewareServiceImpl
+├── presentation/   REST-kontroller – _Template_Controller (ärver RegelManuellController)
+└── storage/        Datapersistens – _Template_CommonDataStorageService
+```
+
+Konfigurationsfiler finns under `src/main/resources/`:
+
+| Fil                      | Syfte                                                                  |
+|--------------------------|------------------------------------------------------------------------|
+| `application.properties` | Quarkus- och Kafka-konfiguration (topics, container image-namn m.m.)   |
+| `config.yaml`            | Regelspecifik metadata: T.ex. uppgift, specifikation, regel och lagrum |
+
+Tjänsten kommunicerar asynkront via Kafka. Ämnen konfigureras i `application.properties` och ska göras unika per regel.
+
+## Konfiguration av config.yaml
+
+Filen `src/main/resources/config.yaml` innehåller regelns metadata och måste anpassas:
+
+- **`uppgift.path`** – Ska matcha `@Path`-annotationen i `_Template_Controller`.
+- **`specifikation`** – Namn, uppgiftsbeskrivning och roll för handläggaren.
+- **`regel`** – Namn och beskrivning av den specifika regeln.
+- **`lagrum`** – Lagstiftningsreferens (författning, kapitel, paragraf m.m.).
+- **`utokadUppgiftsbeskrivning`** – Utökad beskrivning som visas i handläggargränssnittet.
 
 ## TODOS
 
-Projektet innehåller ett antal TODO kommentarer som beskriver konfiguration som bör ändras
-och platser där logik bör fyllas i för att skapa en fungerande regel. Se t.ex. src/main/resources/application.properties
-och src/main/java/se.fk.github.regel.template/_Template_Service.java för exempel på dessa.
+Projektet innehåller ett antal TODO-kommentarer som beskriver konfiguration som bör ändras
+och platser där logik bör fyllas i. De viktigaste ställena är:
+
+- `src/main/resources/application.properties` – Kafka-topics och container image-namn.
+- `src/main/resources/config.yaml` – Regelmetadata och lagrum.
+- `src/main/java/.../logic/_Template_Service.java` – Implementera `readData`, `updateData` och `done`.
+- `src/main/java/.../presentation/rest/_Template_Controller.java` – Uppdatera `@Path`.
 
 ## Ersätt Template i mallarna
 
-Genomgående: Byt ut _Template_ mot namnet på regeln.
+Genomgående: Byt ut `_Template_` mot namnet på regeln.
 
 t.ex. om regelns namn är _Bekräfta beslut_:
 ```
 package se.fk.github.template -> se.fk.github.bekraftabeslut
-GetTemplateDataRequest -> GetBekraftaBeslutDataRequest
+_Template_Service       -> BekraftaBeslutService
+_Template_Controller    -> BekraftaBeslutController
 ```
+
+## Tester
+
+Projektet innehåller tester under `src/test/java/`:
+
+| Testklass                                        | Syfte                                                   |
+|--------------------------------------------------|---------------------------------------------------------|
+| `RegelTemplateTest`                              | Regel-specifika tester                                  |
+| `RegelTemplateHandlaggningTest`                  | Ramverksdefinierade tester av Handläggning-interaktion  |
+| `RegelTemplateOulTest`                           | Ramverksdefinierade tester av operativt uppgiftslager                       |
+| `RegelTemplateUtokadUppgiftsbeskrivningTest`     | Verifierar utökad uppgiftsbeskrivning                   |
+| `WireMockRegelTemplate`                          | WireMock-konfiguration för stubbar mot externa tjänster |
 
 ## Bygg projektet
 
-`./mvnw -s settings.xml clean compile`.
+`./mvnw -s settings.xml clean compile`
 
 ## Bygg och testa projektet
 
-`./mvnw -s settings.xml clean verify`.
+`./mvnw -s settings.xml clean verify`
 
 ## Bygg docker image för lokal testning
 
