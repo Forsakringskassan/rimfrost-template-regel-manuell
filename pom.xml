@@ -90,7 +90,7 @@
       -->
       <groupId>se.fk.rimfrost.template.regel.manuell.openapi</groupId>
       <artifactId>rimfrost-template-regel-manuell-openapi-jaxrs-spec</artifactId>
-      <version>0.0.1</version>
+      <version>1.0.0</version>
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>
