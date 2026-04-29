@@ -1,4 +1,4 @@
-package se.fk.github.regel.template;
+package se.fk.github.regeltemplate;
 
 import io.quarkus.test.common.QuarkusTestResource;
 import io.quarkus.test.junit.QuarkusTest;

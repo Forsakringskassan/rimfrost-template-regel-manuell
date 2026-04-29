@@ -1,4 +1,4 @@
-package se.fk.github.regel.template.presentation.rest;
+package se.fk.github.regeltemplate.presentation.rest;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.ws.rs.Consumes;
@@ -11,7 +11,7 @@ import se.fk.rimfrost.template.regel.manuell.openapi.jaxrsspec.controllers.gener
 @Produces("application/json")
 @Consumes("application/json")
 @ApplicationScoped
-@Path("/regel/_Template_") // TODO to be renamed
-public class _Template_Controller extends RegelManuellController<GetDataResponse, PatchDataRequest> // TODO byt ut till klasser genererade från regelns OpenAPI-spec
+@Path("/regel/Template")
+public class RegelTemplateController extends RegelManuellController<GetDataResponse, PatchDataRequest> // TODO byt ut till klasser genererade från regelns OpenAPI-spec
 {
 }

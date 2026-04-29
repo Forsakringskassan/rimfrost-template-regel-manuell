@@ -26,10 +26,10 @@ konfigurerad för att kunna hämta vissa projekt beroenden.
 Källkoden är uppdelad i en lagerarkitektur:
 
 ```
-src/main/java/se/fk/github/regel/template/
-├── logic/          Affärslogik – _Template_Service, _Template_Mapper, _Template_MiddlewareServiceImpl
-├── presentation/   REST-kontroller – _Template_Controller (ärver RegelManuellController)
-└── storage/        Datapersistens – _Template_CommonDataStorageService
+src/main/java/se/fk/github/regeltemplate/
+├── logic/          Affärslogik – RegelTemplateService, RegelTemplateMapper, RegelTemplateMiddlewareServiceImpl
+├── presentation/   REST-kontroller – RegelTemplateController (ärver RegelManuellController)
+└── storage/        Datapersistens – RegelTemplateCommonDataStorageService
 ```
 
 Konfigurationsfiler finns under `src/main/resources/`:
@@ -45,7 +45,7 @@ Tjänsten kommunicerar asynkront via Kafka. Ämnen konfigureras i `application.p
 
 Filen `src/main/resources/config.yaml` innehåller regelns metadata och måste anpassas:
 
-- **`uppgift.path`** – Ska matcha `@Path`-annotationen i `_Template_Controller`.
+- **`uppgift.path`** – Ska matcha `@Path`-annotationen i `RegelTemplateController`.
 - **`specifikation`** – Namn, uppgiftsbeskrivning och roll för handläggaren.
 - **`regel`** – Namn och beskrivning av den specifika regeln.
 - **`lagrum`** – Lagstiftningsreferens (författning, kapitel, paragraf m.m.).
@@ -58,18 +58,18 @@ och platser där logik bör fyllas i. De viktigaste ställena är:
 
 - `src/main/resources/application.properties` – Kafka-topics och container image-namn.
 - `src/main/resources/config.yaml` – Regelmetadata och lagrum.
-- `src/main/java/.../logic/_Template_Service.java` – Implementera `readData`, `updateData` och `done`.
-- `src/main/java/.../presentation/rest/_Template_Controller.java` – Uppdatera `@Path`.
+- `src/main/java/.../logic/RegelTemplateService.java` – Implementera `readData`, `updateData` och `done`.
+- `src/main/java/.../presentation/rest/RegelTemplateController.java` – Uppdatera `@Path`.
 
 ## Ersätt Template i mallarna
 
-Genomgående: Byt ut `_Template_` mot namnet på regeln.
+Genomgående: Byt ut `RegelTemplate` mot namnet på regeln.
 
 t.ex. om regelns namn är _Bekräfta beslut_:
 ```
-package se.fk.github.template -> se.fk.github.bekraftabeslut
-_Template_Service       -> BekraftaBeslutService
-_Template_Controller    -> BekraftaBeslutController
+package se.fk.github.regeltemplate -> se.fk.github.bekraftabeslut
+RegelTemplateService       -> BekraftaBeslutService
+RegelTemplateController    -> BekraftaBeslutController
 ```
 
 ## Tester

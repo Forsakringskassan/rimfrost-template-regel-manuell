@@ -2,7 +2,7 @@ uppgift:
   id: c41c6068-45d6-44d5-a935-08e57a89c0e0
   version: 1
   # TODO: Change path to match path in RegelController
-  path: /regel/_Template_
+  path: /regel/Template
   aktivitet: "Bedöma rätten till"
 
 specifikation:

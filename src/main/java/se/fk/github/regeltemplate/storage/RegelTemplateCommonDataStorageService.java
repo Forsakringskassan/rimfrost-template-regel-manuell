@@ -1,4 +1,4 @@
-package se.fk.github.regel.template.storage;
+package se.fk.github.regeltemplate.storage;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import se.fk.rimfrost.framework.regel.manuell.storage.ManuellRegelCommonDataStorage;
@@ -8,7 +8,7 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 @ApplicationScoped
-public class _Template_CommonDataStorageService implements ManuellRegelCommonDataStorage
+public class RegelTemplateCommonDataStorageService implements ManuellRegelCommonDataStorage
 {
    private final Map<UUID, ManuellRegelCommonData> storage = new ConcurrentHashMap<>();
 

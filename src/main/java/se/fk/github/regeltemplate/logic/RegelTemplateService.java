@@ -1,10 +1,10 @@
-package se.fk.github.regel.template.logic;
+package se.fk.github.regeltemplate.logic;
 
 import io.quarkus.runtime.Startup;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import se.fk.github.regel.template.storage._Template_CommonDataStorageService;
+import se.fk.github.regeltemplate.storage.RegelTemplateCommonDataStorageService;
 import se.fk.rimfrost.framework.handlaggning.adapter.HandlaggningAdapter;
 import se.fk.rimfrost.framework.handlaggning.model.Handlaggning;
 import se.fk.rimfrost.framework.handlaggning.model.HandlaggningUpdate;
@@ -20,11 +20,11 @@ import java.util.UUID;
 
 @ApplicationScoped
 @Startup
-public class _Template_Service extends RegelManuellServiceBase
+public class RegelTemplateService extends RegelManuellServiceBase
       implements RegelManuellServiceInterface<GetDataResponse, PatchDataRequest> // TODO rename service
 {
    @Inject
-   _Template_Mapper mapper; // TODO rename
+   RegelTemplateMapper mapper; // TODO rename
 
    @Inject
    RegelConfigProvider regelConfigProvider;
@@ -33,7 +33,7 @@ public class _Template_Service extends RegelManuellServiceBase
    HandlaggningAdapter handlaggningAdapter;
 
    @Inject
-   _Template_CommonDataStorageService dataStorage; // TODO rename
+   RegelTemplateCommonDataStorageService dataStorage; // TODO rename
 
    @SuppressFBWarnings("URF_UNREAD_FIELD")
    private RegelConfig regelConfig;
