@@ -85,6 +85,14 @@
       <scope>test</scope>
     </dependency>
     <dependency>
+      <!--
+      TODO: Replace this dependency with the rule-specific OpenAPI artifact
+      -->
+      <groupId>se.fk.rimfrost.template.regel.manuell.openapi</groupId>
+      <artifactId>rimfrost-template-regel-manuell-openapi-jaxrs-spec</artifactId>
+      <version>0.0.1</version>
+    </dependency>
+    <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-junit-mockito</artifactId>
       <scope>test</scope>
