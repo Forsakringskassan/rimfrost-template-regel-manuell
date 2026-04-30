@@ -2,6 +2,16 @@
 
 Changelog of rimfrost-template-regel-manuell.
 
+## 1.0.0 (2026-04-30)
+
+### Breaking changes
+
+-  release 1.0 ([9b8df](https://github.com/Forsakringskassan/rimfrost-template-regel-manuell/commit/9b8dffcc55e4343) Ulf Slunga)  
+
+### Features
+
+-  release 1.0 ([9b8df](https://github.com/Forsakringskassan/rimfrost-template-regel-manuell/commit/9b8dffcc55e4343) Ulf Slunga)  
+
 ## 0.0.2 (2026-04-30)
 
 ### Bug Fixes
