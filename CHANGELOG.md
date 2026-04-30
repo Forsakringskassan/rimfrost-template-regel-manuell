@@ -2,6 +2,25 @@
 
 Changelog of rimfrost-template-regel-manuell.
 
+## 0.0.2 (2026-04-30)
+
+### Bug Fixes
+
+-  renaming _Template_ to RegelTemplate ([03b94](https://github.com/Forsakringskassan/rimfrost-template-regel-manuell/commit/03b9469fb75973c) Ulf Slunga)  
+-  tar bort onödiga dependencies till test containers ([273bc](https://github.com/Forsakringskassan/rimfrost-template-regel-manuell/commit/273bc0e02dfb644) Ulf Slunga)  
+-  spotless apply ([f84ad](https://github.com/Forsakringskassan/rimfrost-template-regel-manuell/commit/f84ad2097ec9b30) Ulf Slunga)  
+-  released version of template openapi spec ([7a5fd](https://github.com/Forsakringskassan/rimfrost-template-regel-manuell/commit/7a5fd678eb97143) Ulf Slunga)  
+-  TODOs för importer av API-klasser ([f7c9d](https://github.com/Forsakringskassan/rimfrost-template-regel-manuell/commit/f7c9dabe681b038) Ulf Slunga)  
+-  hashmap implementation of common data storage ([53d86](https://github.com/Forsakringskassan/rimfrost-template-regel-manuell/commit/53d860370016d21) Ulf Slunga)  
+
+### Other changes
+
+**Update RegelTemplateController.java**
+
+
+[17f80](https://github.com/Forsakringskassan/rimfrost-template-regel-manuell/commit/17f80d34a5a1771) Ulf Slunga *2026-04-30 05:56:56*
+
+
 ## 0.0.1 (2026-04-28)
 
 ### Breaking changes
