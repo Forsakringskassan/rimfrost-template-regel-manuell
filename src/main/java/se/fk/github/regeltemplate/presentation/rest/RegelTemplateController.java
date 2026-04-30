@@ -11,7 +11,7 @@ import se.fk.rimfrost.template.regel.manuell.openapi.jaxrsspec.controllers.gener
 @Produces("application/json")
 @Consumes("application/json")
 @ApplicationScoped
-@Path("/regel/Template")
+@Path("/regel/Template") // TODO to be renamed
 public class RegelTemplateController extends RegelManuellController<GetDataResponse, PatchDataRequest> // TODO byt ut till klasser genererade från regelns OpenAPI-spec
 {
 }
