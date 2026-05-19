@@ -4,7 +4,7 @@ import io.quarkus.runtime.Startup;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import se.fk.github.regeltemplate.storage.RegelTemplateCommonDataStorageService;
+import se.fk.rimfrost.framework.regel.manuell.storage.ManuellRegelCommonDataStorage;
 import se.fk.rimfrost.framework.handlaggning.adapter.HandlaggningAdapter;
 import se.fk.rimfrost.framework.handlaggning.model.Handlaggning;
 import se.fk.rimfrost.framework.handlaggning.model.HandlaggningUpdate;
@@ -33,7 +33,7 @@ public class RegelTemplateService extends RegelManuellServiceBase
    HandlaggningAdapter handlaggningAdapter;
 
    @Inject
-   RegelTemplateCommonDataStorageService dataStorage; // TODO rename
+   ManuellRegelCommonDataStorage dataStorage;
 
    @SuppressFBWarnings("URF_UNREAD_FIELD")
    private RegelConfig regelConfig;
