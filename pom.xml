@@ -56,12 +56,12 @@
     <dependency>
       <groupId>se.fk.rimfrost.framework.regel.manuell</groupId>
       <artifactId>rimfrost-framework-regel-manuell</artifactId>
-      <version>1.0.7</version>
+      <version>1.0.10</version>
     </dependency>
     <dependency>
       <groupId>se.fk.rimfrost.framework.regel.manuell</groupId>
       <artifactId>rimfrost-framework-regel-manuell</artifactId>
-      <version>1.0.7</version>
+      <version>1.0.10</version>
       <classifier>tests</classifier>
       <scope>test</scope>
     </dependency>
@@ -93,15 +93,11 @@
     </dependency>
     <dependency>
       <!--
-      TODO: Replace this dependency with a suitable implementation of rimfrost-framework-uppgift-status-provider-interface that returns the correct referensdata ids
-
-      This dependency should be replaced with a dependency on a different implementation of rimfrost-framework-uppgift-status-provider-interface
-      that returns the referensdata ids relevant to the deployment environment of the rule. See https://github.com/Forsakringskassan/rimfrost-framework-uppgift-status-provider
-      for a description of the included provider.
+      TODO: Replace this dependency with non-template version
       -->
-      <groupId>se.fk.rimfrost.framework.uppgiftstatusprovider</groupId>
-      <artifactId>rimfrost-framework-uppgift-status-provider</artifactId>
-      <version>1.0.0</version>
+      <groupId>se.fk.rimfrost.referensdata</groupId>
+      <artifactId>rimfrost-template-referensdata-erbjudande</artifactId>
+      <version>0.0.1</version>
     </dependency>
   </dependencies>
   <repositories>
