@@ -33,11 +33,12 @@ src/main/java/se/fk/github/regeltemplate/
 
 Konfigurationsfiler finns under `src/main/resources/`:
 
-| Fil                                              | Syfte                                                                        |
-|--------------------------------------------------|------------------------------------------------------------------------------|
-| `application.properties`                         | Quarkus- och Kafka-konfiguration (topics, container image-namn m.m.)         |
-| `config.yaml`                                    | Regelspecifik metadata: T.ex. uppgift, specifikation, regel och lagrum       |
-| `db/migration/V001__regeltemplate_tables.sql`    | Flyway-migrering som skapar PostgreSQL-tabeller för regelns persistens       |
+| Fil                                                             | Syfte                                                                                                                           |
+|-----------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------|
+| `application.properties`                                        | Quarkus- och Kafka-konfiguration (topics, container image-namn m.m.)                                                            |
+| `config.yaml`                                                   | Regelspecifik metadata: T.ex. uppgift, specifikation, regel och lagrum                                                          |
+| `db/migration/V001__regeltemplate_tables.sql`                   | Flyway-migrering som skapar PostgreSQL-tabeller för regelns persistens                                                          |
+| `db/migration/V002__regeltemplate_process_topic_info_table.sql` | Flyway-migrering som skapar PostgreSQL-tabell som håller information om på vilket topic som regel svar ska skickas till process |
 
 Tjänsten kommunicerar asynkront via Kafka. Topics konfigureras i `application.properties` och ska göras unika per regel.
 
@@ -58,6 +59,7 @@ och platser där logik bör fyllas i. De viktigaste ställena är:
 
 - `src/main/resources/application.properties` – Kafka-topics, container image-namn samt `quarkus.flyway.default-schema` och `regel.persistence.table-prefix`.
 - `src/main/resources/db/migration/V001__regeltemplate_tables.sql` – Byt namn på filen och tabellerna så att de matchar `regel.persistence.table-prefix`.
+- `src/main/resources/db/migration/V002__regeltemplate_process_topic_info_table.sql` – Byt namn på filen och tabellen så att de matchar `regel.persistence.table-prefix`.
 - `src/main/resources/config.yaml` – Regelmetadata och lagrum.
 - `src/main/java/.../logic/RegelTemplateService.java` – Implementera `readData`, `updateData` och `done`.
 - `src/main/java/.../presentation/rest/RegelTemplateController.java` – Uppdatera `@Path`.
