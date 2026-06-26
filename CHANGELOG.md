@@ -2,6 +2,31 @@
 
 Changelog of rimfrost-template-regel-manuell.
 
+## 1.1.1 (2026-06-26)
+
+### Bug Fixes
+
+-  add config.yaml validation to CI and bump rimfrost-framework-regel to 1.2.3 ([8d3d5](https://github.com/Forsakringskassan/rimfrost-template-regel-manuell/commit/8d3d59f121cb17b) Ulf Slunga)  
+-  Bump rimfrost-framework-regel-manuell version ([3ac7c](https://github.com/Forsakringskassan/rimfrost-template-regel-manuell/commit/3ac7cb98cd4e271) Lars Persson)  
+
+### Dependency updates
+
+- update dependency se.fk.rimfrost.framework.regel:rimfrost-framework-regel to v1.1.4 ([c97f0](https://github.com/Forsakringskassan/rimfrost-template-regel-manuell/commit/c97f031cbc2943c) renovate[bot])  
+## rimfrost-1.1 (2026-06-04)
+
+### Bug Fixes
+
+-  Bump rimfrost-framework-regel-manuell to 1.0.15 and related deps ([c30be](https://github.com/Forsakringskassan/rimfrost-template-regel-manuell/commit/c30be92fe6a14fd) Ulf Slunga)  
+-  Remove unnecessary dependencies from pom.xml ([784b5](https://github.com/Forsakringskassan/rimfrost-template-regel-manuell/commit/784b54c3fc97ca1) Lars Persson)  
+-  Bump rimfrost-framework-regel-manuell version ([8c3bc](https://github.com/Forsakringskassan/rimfrost-template-regel-manuell/commit/8c3bcea018becdd) Lars Persson)  
+-  Update README to reflect PostgreSQL persistence and remove storage layer ([ff921](https://github.com/Forsakringskassan/rimfrost-template-regel-manuell/commit/ff921c424f2a483) Ulf Slunga)  
+-  Migrate storage to framework ManuellRegelCommonDataStorage with PostgreSQL persistence ([0630b](https://github.com/Forsakringskassan/rimfrost-template-regel-manuell/commit/0630b3e2e0ca654) Ulf Slunga)  
+
+### Dependency updates
+
+- update dependency se.fk.rimfrost.framework.regel:rimfrost-framework-regel to v1.0.4 ([0ca6f](https://github.com/Forsakringskassan/rimfrost-template-regel-manuell/commit/0ca6f3e8b4b5bc0) renovate[bot])  
+- update dependency se.fk.rimfrost.framework.regel:rimfrost-framework-regel to v1.0.2 ([eb27d](https://github.com/Forsakringskassan/rimfrost-template-regel-manuell/commit/eb27de47f7577b5) renovate[bot])  
+- update dependency org.awaitility:awaitility to v4.3.0 ([1a966](https://github.com/Forsakringskassan/rimfrost-template-regel-manuell/commit/1a9665d086689b7) renovate[bot])  
 ## 1.0.0 (2026-04-30)
 
 ### Breaking changes
