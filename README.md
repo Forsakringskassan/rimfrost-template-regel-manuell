@@ -57,7 +57,7 @@ Filen `src/main/resources/config.yaml` innehåller regelns metadata och måste a
 Projektet innehåller ett antal TODO-kommentarer som beskriver konfiguration som bör ändras
 och platser där logik bör fyllas i. De viktigaste ställena är:
 
-- `src/main/resources/application.properties` – Kafka-topics, container image-namn samt `quarkus.flyway.default-schema` och `regel.persistence.table-prefix`.
+- `src/main/resources/application.properties` – Kafka-topics, container image-namn, openapi index dependency samt `quarkus.flyway.default-schema` och `regel.persistence.table-prefix`.
 - `src/main/resources/db/migration/V001__regeltemplate_tables.sql` – Byt namn på filen och tabellerna så att de matchar `regel.persistence.table-prefix`.
 - `src/main/resources/db/migration/V002__regeltemplate_process_topic_info_table.sql` – Byt namn på filen och tabellen så att de matchar `regel.persistence.table-prefix`.
 - `src/main/resources/config.yaml` – Regelmetadata och lagrum.
