@@ -4,7 +4,6 @@ import io.quarkus.runtime.Startup;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import se.fk.rimfrost.framework.regel.manuell.storage.ManuellRegelCommonDataStorage;
 import se.fk.rimfrost.framework.handlaggning.adapter.HandlaggningAdapter;
 import se.fk.rimfrost.framework.handlaggning.model.Handlaggning;
 import se.fk.rimfrost.framework.handlaggning.model.HandlaggningUpdate;
@@ -13,6 +12,7 @@ import se.fk.rimfrost.framework.regel.integration.config.RegelConfigProvider;
 import se.fk.rimfrost.framework.regel.logic.config.RegelConfig;
 import se.fk.rimfrost.framework.regel.manuell.logic.RegelManuellServiceBase;
 import se.fk.rimfrost.framework.regel.manuell.logic.RegelManuellServiceInterface;
+import se.fk.rimfrost.framework.regel.oul.logic.OulUppgiftService;
 import se.fk.rimfrost.template.regel.manuell.openapi.jaxrsspec.controllers.generatedsource.model.GetDataResponse; // TODO byt ut mot regelns API
 import se.fk.rimfrost.template.regel.manuell.openapi.jaxrsspec.controllers.generatedsource.model.PatchDataRequest; // TODO byt ut mot regelns API
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
@@ -33,7 +33,7 @@ public class RegelTemplateService extends RegelManuellServiceBase
    HandlaggningAdapter handlaggningAdapter;
 
    @Inject
-   ManuellRegelCommonDataStorage dataStorage;
+   OulUppgiftService oulUppgiftService;
 
    @SuppressFBWarnings("URF_UNREAD_FIELD")
    private RegelConfig regelConfig;
