@@ -2,6 +2,21 @@
 
 Changelog of rimfrost-template-regel-manuell.
 
+## 1.1.2 (2026-09-23)
+
+### Bug Fixes
+
+-  bump rimfrost dependencies ([aa359](https://github.com/Forsakringskassan/rimfrost-template-regel-manuell/commit/aa359f781a67879) Ulf Slunga)  
+-  Bump rimfrost-framework-regel-manuell version ([3c449](https://github.com/Forsakringskassan/rimfrost-template-regel-manuell/commit/3c449f97eb3cfcb) Lars Persson)  
+-  Bump rimfrost-framework-regel-manuell version ([9d5ad](https://github.com/Forsakringskassan/rimfrost-template-regel-manuell/commit/9d5ad743c29cb22) Lars Persson)  
+-  Bump rimfrost-framework-regel-manuell version ([2ed5e](https://github.com/Forsakringskassan/rimfrost-template-regel-manuell/commit/2ed5e8f04a857b3) Lars Persson)  
+
+### Dependency updates
+
+- update forsakringskassan/rimfrost-framework-regel action to v1.4.2 ([9ce50](https://github.com/Forsakringskassan/rimfrost-template-regel-manuell/commit/9ce5007aa500b15) renovate[bot])  
+- update dependency se.fk.rimfrost.framework.regel:rimfrost-framework-regel to v1.4.2 ([f1450](https://github.com/Forsakringskassan/rimfrost-template-regel-manuell/commit/f14504354b4abe7) renovate[bot])  
+- pin forsakringskassan/.github action to d1349e6 ([3750a](https://github.com/Forsakringskassan/rimfrost-template-regel-manuell/commit/3750af21b9d0831) renovate[bot])  
+- update forsakringskassan/rimfrost-framework-regel action to v1.2.4 ([bf4d9](https://github.com/Forsakringskassan/rimfrost-template-regel-manuell/commit/bf4d93a5d903fd9) renovate[bot])  
 ## 1.1.1 (2026-06-26)
 
 ### Bug Fixes
