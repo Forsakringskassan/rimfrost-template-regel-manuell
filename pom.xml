@@ -45,12 +45,12 @@
     <dependency>
       <groupId>se.fk.rimfrost.framework.regel.manuell</groupId>
       <artifactId>rimfrost-framework-regel-manuell</artifactId>
-      <version>1.6.1</version>
+      <version>1.6.3</version>
     </dependency>
     <dependency>
       <groupId>se.fk.rimfrost.framework.regel.manuell</groupId>
       <artifactId>rimfrost-framework-regel-manuell</artifactId>
-      <version>1.6.1</version>
+      <version>1.6.3</version>
       <classifier>tests</classifier>
       <scope>test</scope>
     </dependency>
@@ -67,7 +67,7 @@
       -->
       <groupId>se.fk.rimfrost.template.regel.manuell.openapi</groupId>
       <artifactId>rimfrost-template-regel-manuell-openapi-jaxrs-spec</artifactId>
-      <version>1.1.1</version>
+      <version>1.1.2</version>
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>
@@ -86,7 +86,7 @@
       -->
       <groupId>se.fk.rimfrost.referensdata</groupId>
       <artifactId>rimfrost-template-referensdata-erbjudande</artifactId>
-      <version>0.0.1</version>
+      <version>1.1.1</version>
     </dependency>
   </dependencies>
 
