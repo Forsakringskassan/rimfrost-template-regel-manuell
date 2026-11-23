@@ -33,12 +33,15 @@ src/main/java/se/fk/github/regeltemplate/
 
 Konfigurationsfiler finns under `src/main/resources/`:
 
-| Fil                                                             | Syfte                                                                                                                           |
-|-----------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------|
-| `application.properties`                                        | Quarkus- och Kafka-konfiguration (topics, container image-namn m.m.)                                                            |
-| `config.yaml`                                                   | Regelspecifik metadata: T.ex. uppgift, specifikation, regel och lagrum                                                          |
-| `db/migration/V001__regeltemplate_tables.sql`                   | Flyway-migrering som skapar PostgreSQL-tabeller för regelns persistens                                                          |
-| `db/migration/V002__regeltemplate_process_topic_info_table.sql` | Flyway-migrering som skapar PostgreSQL-tabell som håller information om på vilket topic som regel svar ska skickas till process |
+| Fil                                                                          | Syfte                                                                                                                           |
+|------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------|
+| `application.properties`                                                     | Quarkus- och Kafka-konfiguration (topics, container image-namn m.m.)                                                            |
+| `config.yaml`                                                                | Regelspecifik metadata: T.ex. uppgift, specifikation, regel och lagrum                                                          |
+| `db/migration/V001__regeltemplate_tables.sql`                                | Flyway-migrering som skapar PostgreSQL-tabeller för regelns persistens                                                          |
+| `db/migration/V002__regeltemplate_process_topic_info_table.sql`              | Flyway-migrering som skapar PostgreSQL-tabell som håller information om på vilket topic som regel svar ska skickas till process |
+`db/migration/V003__drop_regeltemplate_process_topic_info_table.sql`           | Flyway-migrering som tar bort PostgreSQL-tabell som skapades i V002 migration                                                   |
+| `db/migration/V004__add_regelutfall_kommentar_columns_common_data_table.sql` | Flyway-migrering som lägger till kolumner för kommentar och regelutfall till `common_data` tabellen                             |
+
 
 Tjänsten kommunicerar asynkront via Kafka. Topics konfigureras i `application.properties` och ska göras unika per regel.
 
@@ -60,6 +63,8 @@ och platser där logik bör fyllas i. De viktigaste ställena är:
 - `src/main/resources/application.properties` – Kafka-topics, container image-namn, openapi index dependency samt `quarkus.flyway.default-schema` och `regel.persistence.table-prefix`.
 - `src/main/resources/db/migration/V001__regeltemplate_tables.sql` – Byt namn på filen och tabellerna så att de matchar `regel.persistence.table-prefix`.
 - `src/main/resources/db/migration/V002__regeltemplate_process_topic_info_table.sql` – Byt namn på filen och tabellen så att de matchar `regel.persistence.table-prefix`.
+- `src/main/resources/db/migration/V003__drop_regeltemplate_process_topic_info_table.sql` – Byt namn på filen och tabellen så att de matchar `regel.persistence.table-prefix`.
+- `src/main/resources/db/migration/V004__add_regelutfall_kommentar_columns_common_data_table.sql` – Byt namn på tabellen så att den matchar `regel.persistence.table-prefix`.
 - `src/main/resources/config.yaml` – Regelmetadata och lagrum.
 - `src/main/java/.../logic/RegelTemplateService.java` – Implementera `readData`, `updateData` och `done`.
 - `src/main/java/.../presentation/rest/RegelTemplateController.java` – Uppdatera `@Path`.
